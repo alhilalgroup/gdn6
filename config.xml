@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.gdnonline.m" version="2.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.gdnonline.m" version="3.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
   <name>GDNOnline</name>
   <description>
     GDN Online is the GCC’s most dynamic digital news source providing a selected mix of local, regional and international news and features to a readership across the Gulf countries and internationally.
