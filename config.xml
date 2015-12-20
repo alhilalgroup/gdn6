@@ -4,12 +4,11 @@
     <description>
       GDN Online is the GCC’s most dynamic digital news source providing a selected mix of local, regional and international news and features to a readership across the Gulf countries and internationally.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="binju@northstar.bh" href="http://www.gdnonline.com">
         GDN Online
     </author>
     <content src="index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
-  
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -21,8 +20,12 @@
         <allow-intent href="market:*" />
       <icon src="icon.png" />
     </platform>
- 
-  
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+
+
   <icon platform="android" qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" />
   <icon platform="android" qualifier="mdpi" src="res/icon/android/icon-48-mdpi.png" />
   <icon platform="android" qualifier="hdpi" src="res/icon/android/icon-72-hdpi.png" />
@@ -38,5 +41,4 @@
   <splash platform="android" src="res/screen/android/screen-mdpi-portrait.png" density="mdpi" />
   <splash platform="android"  src="res/screen/android/screen-hdpi-portrait.png" density="hdpi" />
   <splash platform="android"  src="res/screen/android/screen-xhdpi-portrait.png" density="xhdpi"/>
-  
 </widget>
