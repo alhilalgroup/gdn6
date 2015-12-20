@@ -7,7 +7,7 @@
     <author email="binju@northstar.bh" href="http://www.gdnonline.com">
         GDN Online
     </author>
-    <content src="index.html" />
+    <content src="www/index.html" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
