@@ -1,85 +1,65 @@
-﻿jQuery(document).ready(function () {
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', function () {
+            // Enable to debug issues.
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-    var rownum = 0;
-    jQuery.getJSON('http://cdn.gdnonline.com/homenews?jsoncallback=?', function (data) {
-        var contenthtml = '';
+            var notificationOpenedCallback = function (jsonData) {
+                console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+            };
 
-        var categoryname = "";
+            window.plugins.OneSignal.init("bbd786a3-cba8-4781-bff1-5808ffd3d47d",
+                                           { googleProjectNumber: "561621186378" },
+                                           notificationOpenedCallback);
 
-        jQuery.each(data, function (key, value) {
+            // Show an alert box if a notification comes in when the user is in your app.
+            window.plugins.OneSignal.enableInAppAlertNotification(true);
+        }, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
 
-            if (categoryname != data[key].category) {
-                contenthtml += '<div class="homecategory"    onclick="javascript:window.location.href=\'section.html?secid=' + data[key].category.replace('Local', 'local').replace('International', 'international') + ' \'"  >' + data[key].category.replace('Local', 'Bahrain').replace('International', 'World') + '</div>';
-                if (screen.width < 768) {
-                    contenthtml += '<div   class="sliderrow"><div class="sliderpicwrap"><img  class="sliderpic"   onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"   src ="http://www.gdnonline.com/gdnimages/' + data[key].mime_type_source.replace(".jpg", "_t.jpg").replace(".JPG", "_t.jpg") + '" /></div>';
-                }
-                else {
-                    contenthtml += '<div   class="sliderrow"><div class="sliderpicwrap"><img   onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"    class="sliderpic"  src ="http://www.gdnonline.com/gdnimages/' + data[key].mime_type_source + '" /></div>';
-                }
-                contenthtml += '<div class="slidertext"   onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"  >' + data[key].title + '</div></div>';
-            }
-            else {
-                contenthtml += '<div class="homerowsmall" style="clear:both;background-color:white;" class="container no-bottom"> ';
-                contenthtml += '<div class="timgwrap"><img onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"   src="http://www.gdnonline.com/gdnimages/' + data[key].mime_type_source.replace('.jpg', '_t.jpg').replace('.JPG', '_t.jpg') + '" alt="img" class="timg "></div> ';
-                contenthtml += ' <div class="ttitle roboto"  onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"   >' + data[key].title + '</div> ';
-                contenthtml += '</div>';
-            }
-            //if (rownum == 4) {
-            //    contenthtml += '<div class="clear" align="center" style="width:100%;background-color:red" ><iframe marginheight="0" marginwidth="0" align="left" src="topbanner.html" width="310" height="260" frameborder=0></iframe></div>';
-                
-            //}
-            categoryname = data[key].category;
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
 
-            rownum++;
-        });
+        console.log('Received Event: ' + id);
+    }
+};
 
-        jQuery('#pagecontent').append(contenthtml);
-         
-
-
-        jQuery.getJSON('http://cdn.gdnonline.com/slider?jsoncallback=?', function (data) {// editors pick
-            var contenthtml = "";
-            jQuery.each(data, function (key, value) {
-                contenthtml = "";
-                if (screen.width < 768) {
-                    contenthtml += '<div   class="sliderrow"><div class="sliderpicwrap"><img  class="sliderpic"   onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"   src ="http://www.gdnonline.com/gdnimages/' + data[key].mime_type_source.replace(".jpg", "_t.jpg").replace(".JPG", "_t.jpg") + '" /></div>';
-                }
-                else {
-                    contenthtml += '<div   class="sliderrow"><div class="sliderpicwrap"><img   onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"    class="sliderpic"  src ="http://www.gdnonline.com/gdnimages/' + data[key].mime_type_source + '" /></div>';
-                }
-                contenthtml += '<div class="slidertext"   onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"  >' + data[key].title + '</div><div class="homesmallcat"    onclick="javascript:window.location.href=\'section.html?secid=' + data[key].category.replace('Local', 'local').replace('International', 'international') + ' \'"  >' + data[key].category.replace('Local', 'Bahrain').replace('International', 'World') + '</div></div>';
-
-                $("#slidercontent").append(contenthtml);
-            });
-        });
-        
-
-
- 
-
-
-        var name = localStorage.getItem("gdnonlineuser");
-        if (name != null && name != 'null') {
-            jQuery("#salute,#salute1").append("Hi " + name + " &nbsp;&nbsp;|&nbsp;&nbsp; <a onclick=window.location.href='logout.html'>Logout</a>");
-        }
-        else {
-            jQuery("#salute,#salute1").hide();
-        }
-
-
-
-        function querystring(key) {
-            var re = new RegExp('(?:\\?|&)' + key + '=(.*?)(?=&|jQuery)', 'gi');
-            var r = [], m;
-            while ((m = re.exec(document.location.search)) != null) r.push(m[1]);
-            return r;
-        }
-
-        function ParseJsonDate(dateString) {
-            var milli = dateString.replace(/\/Date\((-?\d+)\)\//, '$1');
-            var date = new Date(parseInt(milli));
-            var date2 = String(date).substring(0, 16);
-            return date2;
-        }
-    });
-});
+app.initialize();

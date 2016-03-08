@@ -6,8 +6,6 @@
 
     <title>Gulf Digital News</title>
     <link rel="shortcut icon" href="favicon.ico" title="Favicon" />
-    <script src="js/index.js"></script>
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="styles/style.css" rel="stylesheet" type="text/css">
     <link href="styles/framework.css" rel="stylesheet" type="text/css">
@@ -17,8 +15,7 @@
     <link href="styles/animate.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="scripts/jquery.js"></script>
-    
-    <script src="js/home.js"></script>
+    <script src="js/index.js"></script>
     <script type="text/javascript" src="scripts/jqueryui.js"></script>
     <script type="text/javascript" src="scripts/framework.plugins.js"></script>
     <script type="text/javascript" src="scripts/custom.js"></script>
@@ -26,21 +23,19 @@
 
     <script src="js/jquery-2.1.1.min.js"></script>
 
- 
-
 
 
 </head>
 <body>
 
-       <!-- 
+     
     <div id="preloader">
         <div id="status">
             <p class="center-text">
             </p>
         </div>
     </div>
-         -->   
+          
     <div class="all-elements">
         <div class="snap-drawers">
             <!-- Left Sidebar -->
@@ -52,7 +47,7 @@
 
                 <div id="salute"></div>
 
-
+        
                 <ul class="sidebar-navigation  ">
                     <li><a onclick="javascript:window.location.href='index.html'" class="active-menu"><i class="fa fa-home"></i>&nbsp;Home<i></i></a></li>
 
@@ -124,9 +119,9 @@
                 <div><a href="#" class="open-menu"><i class="fa fa-navicon"></i></a></div>
                 <div class="headbary">
                     <div class="oswald white" onclick="javascript:window.location.href='index.html'">GULF DIGITAL NEWS</div>
-
+                   
                 </div>
-
+               
             </div>
 
             <div id="tab1">
@@ -134,15 +129,13 @@
                 <div class="secondbar">
                     <div class="left  secbaritemsel">Editor's Pick</div>
                     <div class="left  secbaritem" onclick="tab2()">Top Stories</div>
-
+                    
                 </div>
 
                 <div class="content">
 
                     <div class="homecategory">Editor's Pick</div>
                     <div id="slidercontent" class="content" style="min-height: 800px">
-
-                        
                     </div>
                 </div>
 
@@ -162,67 +155,47 @@
                 </div>
             </div>
 
+           
 
 
 
+                     <script>
 
-            <script>
+                         function tab1() {
+                            
+                             $("#tab2").hide();
+                             $("#tab1").show();
+                         }
+                         function tab2() {
+                             $("#tab1").hide();
+                           
+                             $("#tab2").show();
+                         }
+                          
+                         
 
-                function tab1() {
-
-                    $("#tab2").hide();
-                    $("#tab1").show();
-                }
-                function tab2() {
-                    $("#tab1").hide();
-
-                    $("#tab2").show();
-                }
-
-
-
-            </script>
+                     </script>
 
 
-            <br />
-            <br />
-            <div class="footer">
-                <div class="footer-socials">
-                    <div class="pull-right" style="padding: 8px 0">
-                        <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+                  <br /><br />
+
+            <div style="background: #444; height: 80px; clear: both">
+
+                             <div class="footer">
+                    <div class="footer-socials">
+                        <div class="pull-right" style="padding: 8px 0">
+                            <a href="#" class="footer-up"><i class="fa fa-angle-up"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-
-
-               <br />
-            <br />
-            <div style="background: #444; height: 80px;">
                 <br />
                 <span class="center-text" style="color: white">GULF DIGITAL NEWS &trade; </span>
 
-                
+              
             </div>
-          
-
 
         </div>
     </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.lazy/1.6.5/jquery.lazy.min.js"></script>
-    <script>
-
-      
-                
-             
-
-            
- 
-    </script>
-    
-
 
     <script>
         (function (i, s, o, g, r, a, m) {
