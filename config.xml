@@ -11,7 +11,7 @@
         GDN Online
     </author>
 
-<preference name="permissions" value="none"/>
+ 
 <content src="index.html" />
 <gap:plugin name="pushbots-cordova-plugin" source="npm" />
  
