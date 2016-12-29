@@ -18,26 +18,39 @@
  */
 var app = {
     // Application Constructor
-    initialize: function () {
+    initialize: function() {
         this.bindEvents();
     },
     // Bind Event Listeners
     //
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function () {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+    bindEvents: function() {
+        document.addEventListener('deviceready', function () {
+            // Enable to debug issues.
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+            var notificationOpenedCallback = function (jsonData) {
+                console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+            };
+
+            window.plugins.OneSignal.init("bbd786a3-cba8-4781-bff1-5808ffd3d47d",
+                                           { googleProjectNumber: "561621186378" },
+                                           notificationOpenedCallback);
+
+            // Show an alert box if a notification comes in when the user is in your app.
+            window.plugins.OneSignal.enableInAppAlertNotification(true);
+        }, false);
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function () {
-        var Pushbots = PushbotsPlugin.initialize("56e1705f17795988628b4567", { "android": { "sender_id": "102657977742" } });
+    onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
-    receivedEvent: function (id) {
+    receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -50,25 +63,3 @@ var app = {
 };
 
 app.initialize();
-
-
-// Should be called once app receive the notification
-Pushbots.on("notification:received", function (data) {
-    console.log("received:" + JSON.stringify(data));
-});
-
-// Should be called once the notification is clicked
-// **important** Doesn't work with iOS while app is closed
-Pushbots.on("notification:clicked", function (data) {
-    console.log("clicked:" + JSON.stringify(data));
-});
-
-
-// Should be called once the device is registered successfully with Apple or Google servers
-Pushbots.on("registered", function (token) {
-    console.log(token);
-});
-
-Pushbots.getRegistrationId(function (token) {
-    console.log("Registration Id:" + token);
-});

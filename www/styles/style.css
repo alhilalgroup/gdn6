@@ -105,7 +105,8 @@ border:1px solid #ccc;
     }
 
     .timg {
-        height: 98px;
+        width:130px;
+        height: 70px;
     }
 
     .homerowsmall {

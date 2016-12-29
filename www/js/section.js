@@ -8,7 +8,7 @@
         jQuery.each(data, function (key, value) {
 
             contenthtml += '<div class="homerowsmall" style="clear:both;background-color:white;" class="container no-bottom"> ';
-            contenthtml += '<div class="timgwrap"><img onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"   src="http://www.gdnonline.com/gdnimages/' + data[key].mime_type_source.replace('.jpg', '_t.jpg').replace('.JPG', '_t.jpg') + '" alt="img" class="timg "></div> ';
+            contenthtml += '<div class="timgwrap"><img width="130" height="70" onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"   src="http://www.gdnonline.com/gdnimages/' + data[key].mime_type_source.replace('.jpg', '_t.jpg').replace('.JPG', '_t.jpg') + '" alt="img" class="timg "></div> ';
             contenthtml += ' <div class="ttitle roboto"  onclick="javascript:window.location.href=\'details.html?id=' + data[key].article_id + ' \'"   >' + data[key].title + '</div> ';
             contenthtml += '</div>';
 
